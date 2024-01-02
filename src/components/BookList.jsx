@@ -2,13 +2,16 @@ import { Component } from "react";
 import {Col, Form, Row } from "react-bootstrap";
 import SingleBook from "./SingleBook";
 
+
 class BookList extends Component {
+
+
   state = {
     searchQuery: "",
   };
-  
-  render() {
-    console.log(this.props.books);
+
+  render() { 
+    const { selected } = this.state;
     return (
       <>
         <Row className="justify-content-center mt-5">
@@ -27,8 +30,8 @@ class BookList extends Component {
           {this.props.books
           .filter((b) => b.title.toLowerCase().includes(this.state.searchQuery))
             .map((b) => (
-              <Col xs={12} md={4} key={b.asin}>
-                <SingleBook book={b} />
+              <Col xs={6} sm={4} md={3} xxl={2} key={b.asin}>
+                <SingleBook book={b} selected={selected} asin={b.asin}/>
               </Col>
             ))}
         </Row>
